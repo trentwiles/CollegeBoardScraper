@@ -2,6 +2,7 @@ import requests
 import os
 import json
 
+
 # I have no idea how often this changes/resets, but if I had to guess it would be ever time you logged out or otherwise deleted the session
 # You need to include the "Bearer" text here
 token = "Bearer abc"
@@ -10,6 +11,9 @@ user_agent = "totally not a college board data scraper"
 subject_id = 8; # ID of the subject of the specific class we are taking (8 is the ID for computer science)
 education_per = 24; # Not fully sure what this is yet, I'm still working on understanding what college board means by this
 
+# Take a look at the .sh file.
+# I had to paste the curl request in here because it broke when I tried to insert the json into python requests
+# If you can get it working without the stupid bash file, please let me know
 os.system("bash ap.sh")
 
 f = open("api.json", "r")
