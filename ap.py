@@ -30,8 +30,6 @@ for thing in json.loads(stuff)["data"]["courseOutline"]["units"]: # sort through
 print("Downloaded " + str(len(asIDs)) + " from CollegeBoard...")
 
 # all you need to make the request is the GraphQL request in JSON
-# assessmentIds may be the class or the task, but i can't say for certain
-# 593478 is hardcoded in but you can change this
 
 for thingtodo in asIDs:
     result = requests.post("https://apc-api-production.collegeboard.org/fym/graphql", json={"query":"query assignmentsOverviewStudent($subjectId: Int!, $assessmentIds: [Int]!) {\n  assignmentsOverviewStudent {\n    assignments(subjectId: $subjectId, assessmentIds: $assessmentIds) {\n      id\n      name\n      assessmentId\n      date\n      headline\n      link\n      status\n      scoringCompletedAt\n      showResults\n      timer\n      learnosityActivityId\n      learnositySubmittedAt\n      submittedAt\n      printToggle\n      studentScoring\n      assignmentCreatedAt\n      sessionScore\n      __typename\n    }\n    __typename\n  }\n}\n","variables":{"subjectId":subject_id,"assessmentIds":[thingtodo]},"operationName":"assignmentsOverviewStudent"}, headers={"User-agent": user_agent, "Authorization": token})
